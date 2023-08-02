@@ -17,7 +17,7 @@ export const GET = async (request: Request, Response: NextResponse) => {
     await main();
     const posts = await prisma.post.findMany();
     return NextResponse.json(
-      { message: "posta recieved", posts },
+      { message: "posts recieved", posts },
       { status: 200 }
     );
   } catch (error) {
@@ -30,7 +30,7 @@ export const POST = async (request: Request, Response: NextResponse) => {
   try {
     await main();
     const { title, description } = await request.json();
-    prisma.post.create({
+    const post = await prisma.post.create({
       data: {
         title,
         description,
@@ -38,8 +38,8 @@ export const POST = async (request: Request, Response: NextResponse) => {
     });
     console.log("new post added successfully ✅");
     return NextResponse.json(
-      { message: "new post added", post: { title, description } },
-      { status: 200 }
+      { message: "new post added", post },
+      { status: 201 }
     );
   } catch (error) {
     return NextResponse.json({ message: "Error!", error }, { status: 500 });
