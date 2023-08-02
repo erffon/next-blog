@@ -22,6 +22,26 @@ export const GET = async (request: Request, Response: NextResponse) => {
     );
   } catch (error) {
     return NextResponse.json({ message: "Error!", error }, { status: 500 });
+  } finally {
+    prisma.$disconnect();
   }
 };
-export const POST = async (request: Request, Response: NextResponse) => {};
+export const POST = async (request: Request, Response: NextResponse) => {
+  try {
+    await main();
+    const { title, description } = await request.json();
+    prisma.post.create({
+      data: {
+        title,
+        description,
+      },
+    });
+    console.log("new post added successfully ✅");
+    return NextResponse.json(
+      { message: "new post added", post: { title, description } },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json({ message: "Error!", error }, { status: 500 });
+  }
+};
