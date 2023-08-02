@@ -12,5 +12,16 @@ async function main() {
   }
 }
 
-export const GET = async (request: Request, Response: NextResponse) => {};
+export const GET = async (request: Request, Response: NextResponse) => {
+  try {
+    await main();
+    const posts = await prisma.post.findMany();
+    return NextResponse.json(
+      { message: "posta recieved", posts },
+      { status: 200 }
+    );
+  } catch (error) {
+    return NextResponse.json({ message: "Error!", error }, { status: 500 });
+  }
+};
 export const POST = async (request: Request, Response: NextResponse) => {};
