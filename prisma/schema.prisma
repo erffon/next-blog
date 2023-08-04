@@ -12,7 +12,20 @@ datasource db {
 
 model Post {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  description String
   date DateTime @default(now())
+  title String
+  subTitle String
+  description String
+  author Author @relation(fields: [authorId],references: [id])
+  authorId String @db.ObjectId
+  authorTwitterId String
+  tags  String[]
+}
+model Author {
+  id String @id @db.ObjectId @default(auto()) @map("_id")
+  name String
+  jobTitle String
+  description String
+  picture String
+  posts Post[]
 }
