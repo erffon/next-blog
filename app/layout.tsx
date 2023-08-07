@@ -19,8 +19,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`flex ${gfont.className}`}>
-        <Sidebar className="w-52 px-4 pt-8 bg-red-600" />
-        <div className="w-full pt-8 bg-green-500">{children}</div>
+        <Sidebar className="w-52 px-4 pt-8" />
+        <div className="w-full pt-8">{children}</div>
       </body>
     </html>
   );
