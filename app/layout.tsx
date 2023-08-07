@@ -1,10 +1,10 @@
 import Sidebar from "@/components/layout/sidebar/Sidebar";
 import "./globals.css";
 import type { Metadata } from "next";
-import { Space_Grotesk } from "next/font/google";
+import { Familjen_Grotesk } from "next/font/google";
 import Head from "next/head";
 
-const inter = Space_Grotesk({ subsets: ["latin"] });
+const gfont = Familjen_Grotesk({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TechCrunch",
@@ -18,8 +18,8 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`flex ${inter.className}`}>
-        <Sidebar className="w-52 px-6 pt-8 bg-red-600" />
+      <body className={`flex ${gfont.className}`}>
+        <Sidebar className="w-52 px-4 pt-8 bg-red-600" />
         <div className="w-full pt-8 bg-green-500">{children}</div>
       </body>
     </html>
